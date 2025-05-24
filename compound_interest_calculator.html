@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Compound Interest Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #eef2f3;
+      padding: 20px;
+    }
+
+    .calculator {
+      max-width: 400px;
+      margin: auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      margin-top: 20px;
+      width: 100%;
+      padding: 10px;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    #result {
+      margin-top: 20px;
+      text-align: center;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="calculator">
+    <h2>Compound Interest Calculator</h2>
+
+    <label for="principal">Principal Amount:</label>
+    <input type="number" id="principal" placeholder="Enter principal amount" />
+
+    <label for="rate">Annual Interest Rate (%):</label>
+    <input type="number" id="rate" placeholder="Enter interest rate" />
+
+    <label for="time">Time (in years):</label>
+    <input type="number" id="time" placeholder="Enter time in years" />
+
+    <button onclick="calculateCompoundInterest()">Calculate</button>
+
+    <div id="result"></div>
+  </div>
+
+  <script>
+    function calculateCompoundInterest() {
+      const principal = parseFloat(document.getElementById("principal").value);
+      const rate = parseFloat(document.getElementById("rate").value);
+      const time = parseFloat(document.getElementById("time").value);
+
+      if (isNaN(principal) || isNaN(rate) || isNaN(time)) {
+        document.getElementById("result").innerText = "Please enter valid numbers.";
+        return;
+      }
+
+      const amount = principal * Math.pow((1 + rate / 100), time);
+      const compoundInterest = amount - principal;
+
+      document.getElementById("result").innerHTML = `
+        Compound Interest: <strong> ${compoundInterest.toFixed(2)}</strong><br/>
+        Total Amount: <strong> ${amount.toFixed(2)}</strong>
+      `;
+    }
+  </script>
+</body>
+</html>
